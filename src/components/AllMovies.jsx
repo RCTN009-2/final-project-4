@@ -12,35 +12,29 @@ import {
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export default function AllMovies() {
+export default function AllMovies({judul}) {
   const [slideIndex, setSlideIndex] = useState(0);
   const [movies, setMovies] = useState([]);
-
-  const handleNextSlide = () => {
-    setSlideIndex((prevIndex) => (prevIndex + 1) % 3);
-  };
-
-  const handlePrevSlide = () => {
-    setSlideIndex((prevIndex) => (prevIndex - 1 + 3) % 3);
-  };
+  console.log(judul)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://www.omdbapi.com/?s=Batman&apikey=805151e8&page=1"
+          `http://www.omdbapi.com/?s=${judul}&apikey=805151e8&page=1`
         );
 
-        console.log(response.data);
+        console.log(response.data.Search);
         // Assuming the response contains an array of movies
-        setMovies(response.data.Search || []);
+        setMovies(response.data.Search);
+        // console.log(movies)
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [movies]);
 
   return (
     <div className="mx-auto bg-black pt-20 h-full">
@@ -49,7 +43,7 @@ export default function AllMovies() {
           variant="h3"
           className="text-white text-center font-normal mb-8 pl-4"
         >
-          Recomendation Movies
+          Movies Collection 
         </Typography>
         <div className=" pl-2">
           <div className="flex lg:pl-10 justify-center lg:justify-start">

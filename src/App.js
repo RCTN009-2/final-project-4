@@ -12,6 +12,7 @@ function App() {
       <Route index element={<Home />} />
       <Route path='/movies' element={<Movies />} />
       <Route path='/movies/:imdbID' element={<MoviesDetail />} />
+      <Route path="/movies/search/:searchTerm" element={<Movies />}/>
       {/* <Movies/> */}
       {/* <MoviesDetail /> */}
     </Routes>

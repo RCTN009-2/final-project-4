@@ -6,16 +6,16 @@ import { Link } from "react-router-dom";
 
 export default function MoviesList() {
   const [movies, setMovies] = useState([]);
-  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://www.omdbapi.com/?s=Batman&apikey=805151e8&page=1"
+          "http://www.omdbapi.com/?s=iron&apikey=805151e8&page=1"
         );
 
-        console.log(response.data);
+        console.log(response.data.Search);
         // Assuming the response contains an array of movies
         setMovies(response.data.Search || []);
       } catch (error) {
@@ -44,7 +44,9 @@ export default function MoviesList() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0 overflow-x-hidden">
             {Object.values(movies)
               .slice(0, 4)
-              .map((movie) => (
+              .map((movie) => { 
+                console.log(movie)
+                return (
                 <div key={movie.imdbID} className="w-96">
                   <div className="relative h-96">
                     <Link to={`/movies/${movie.imdbID}`}>
@@ -56,7 +58,7 @@ export default function MoviesList() {
                     </Link>
                   </div>
                 </div>
-              ))}
+              )})}
           </div>
         </div>
       </div>

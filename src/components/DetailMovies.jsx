@@ -38,10 +38,10 @@ export default function DetailMovies({ id }) {
         </div>
         <div className="pl-6">
           <Typography variant="h6" color="gray" className="mb-4 uppercase">
-            {movies.Title}-{movies.Year}
+            {movies.Title} {movies.Year}
           </Typography>
           <Typography variant="h4" color="blue-gray" className="mb-2">
-            {movies.Genre}-{movies.imdbRating}
+            {movies.Genre} 
           </Typography>
           <Typography variant="h4" color="gray" className="mb-2">
             {movies.imdbRating}
